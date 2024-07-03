@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import AuthContext from '../context/AuthContext'
 
 const LoginPage = () => {
-  let { loginUser } = useContext(AuthContext)
+  const { loginUser } = useContext(AuthContext)
   return (
     <div>
         <form onSubmit={loginUser}>

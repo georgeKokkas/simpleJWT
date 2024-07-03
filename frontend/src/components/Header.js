@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext'
 
 
 const Header = () => {
-  let {user} = useContext(AuthContext)
+  const {user} = useContext(AuthContext)
   return (
     <div>
         <Link to='/' >Home</Link>
