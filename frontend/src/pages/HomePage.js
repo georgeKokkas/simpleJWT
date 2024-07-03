@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import AuthContext from '../context/AuthContext';
-//import './HomePage.css'; // Import the CSS file
+import './HomePage.css';
 
 const HomePage = () => {
   const [notes, setNotes] = useState([]);
@@ -12,6 +12,7 @@ const HomePage = () => {
       getNotes();
       didGetNotes.current = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authTokens]);
 
   const getNotes = async () => {
