@@ -48,7 +48,7 @@ export const AuthProvider = ({children}) => {
             headers:{
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({'refresh':authTokens.refresh})
+            body: JSON.stringify({'refresh':authTokens?.refresh})
         })
         const data = await response.json();
         if (response.status === 200){
@@ -57,6 +57,10 @@ export const AuthProvider = ({children}) => {
             localStorage.setItem('authTokens', JSON.stringify(data))
         } else {
             logoutUser()
+        }
+
+        if(loading){
+            setLoading(false)
         }
     }
 
@@ -68,6 +72,11 @@ export const AuthProvider = ({children}) => {
     }
 
     useEffect(() => {
+
+        if(loading){
+            updateToken()
+        }
+
         const fourMinutes = 1000 * 60 * 4
         const interval = setInterval(()=> {
             if(authTokens){
@@ -80,7 +89,7 @@ export const AuthProvider = ({children}) => {
 
     return(
         <AuthContext.Provider value={contextData} >
-            {children}
+            {loading ? null : children}
         </AuthContext.Provider>
     )
 }
